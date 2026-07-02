@@ -1,0 +1,174 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.mf.gov.pl/SENT/2017/12/08/SENT_205.xsd" xmlns:tp="http://www.mf.gov.pl/SENT/2017/12/08/STypes.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.mf.gov.pl/SENT/2017/12/08/SENT_205.xsd">
+  <xs:import namespace="http://www.mf.gov.pl/SENT/2017/12/08/STypes.xsd" schemaLocation="STypes.xsd"/>
+  <xs:annotation>
+    <xs:appinfo>
+      SENT
+    </xs:appinfo>
+    <xs:documentation source="doc" xml:lang="pl">
+      SENT205 - REJESTRACJA KOMPLETNEGO ZGŁOSZENIA PRZEWOZU TOWARU KOŃCZĄCEGO SIĘ NA TERYTORIUM POLSKI - PODMIOT ODBIERAJĄCY Z DANYMI PRZEWOŹNIKA (TRANSPORT DROGOWY I KOLEJOWY)
+    </xs:documentation>
+    <xs:documentation source="doc" xml:lang="pl">
+      Podstawa prawna: Art.7 ust.1 i 2 rozporządzenia z dnia 12 kwietnia 2017r. w sprawie zgłoszeń przewozu towarów i sposobu postępowania w przypadku niedostępności rejestru zgłoszeń
+    </xs:documentation>
+    <xs:documentation source="doc" xml:lang="en">
+      SENT205 - REGISTRATION OF THE COMPLETE NOTIFICATION OF THE CARRIAGE OF GOODS ENDING IN THE TERRITORY OF POLAND - THE CONSIGNEE WITH THE CARRIER'S DATA (ROAD AND RAILWAY TRANSPORT)
+    </xs:documentation>
+    <xs:documentation source="doc" xml:lang="en">
+      Legal basis: Article 5(1,2) of the Act of 9 march 2017 on the monitoring system of road transport of goods
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="SENT_205">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Element główny komunikatu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Main element of the message
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TypeOfTransport" type="tp:TypeOfTransport" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Rodzaj transportu
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Type of transports
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TypeOfDeclaration" type="tp:TypeOfDeclaration" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Rodzaj zgłoszenia przewozu (np. przewóz oleju opałowego, przewóz gazu LPG)
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Type of the carriage of goods
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="GoodsRecipient" type="tp:TraderOrPerson" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Informacje o podmiocie odbierającym lub odbiorcy towaru
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Information on the consignee or the recipient
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Carrier" type="tp:Trader" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Informacje o przewoźniku towaru
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Information on the carrier of goods
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="GoodsSender" type="tp:Trader" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Informacje o nadawcy towaru
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Information on the consignor
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="MeansOfTransport" type="tp:MeansOfTransport" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Informacje o środku transportu
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Information on the means of transport
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Transport" type="tp:TransportAllRecipient" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Informacje dotyczące przewozu towaru
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Information on the carriage of goods
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="GoodsInformation" type="tp:GoodsInformation" minOccurs="1" maxOccurs="10">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Dane identyfikacyjne przewożonego towaru
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Identification data of carried goods
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="GoodsTransportDocuments" type="tp:GoodsTransportDocuments" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Dokumenty przewozowe towarzyszące przesyłce
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Transport documents accompanying the consignment
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Comments" type="tp:Comments" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Informacje dodatkowe
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Additional information
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="DocumentId" type="tp:DocumentSelfNumber" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Numer własny dokumentu
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Own document number
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ResponseAddress" type="tp:ResponseAddress" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Kanały komunikacji zwrotnej
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Feedback communication channel
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Statements" type="tp:Statements" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Oświadczam, że posiadam upoważnienie do złożenia i uzupełnienia niniejszego zgłoszenia w imieniu i na rzecz podmiotu zobowiązanego
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              I declare that I am authorized to submit and complete this notification for and on behalf of the obligated entity
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="AdditionalStatements" type="tp:AdditionalStatements200" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Dodatkowe oświadczenia podmiotu odbierającego dotyczące obrotu paliwami opałowymi
+            </xs:documentation>
+            <xs:documentation source="doc" xml:lang="en">
+              Additional consignee declarations regarding heating fuel trading
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

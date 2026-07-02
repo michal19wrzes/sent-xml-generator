@@ -1,0 +1,5 @@
+pandas
+openpyxl
+lxml
+PyYAML
+pywin32; platform_system == "Windows"

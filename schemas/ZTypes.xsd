@@ -1,0 +1,1381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.mf.gov.pl/SENT/2020/07/21/ZTypes.xsd"
+           xmlns:tp="http://www.mf.gov.pl/SENT/2020/07/21/ZTypes.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:simpleType name="City">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Nazwa miejscowości
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        A message of verification of keys and downloading the notification of the carriage of goods
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Locality name
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Legal basis: Act on monitoring road and rail carriage of goods
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="60"/>
+      <xs:minLength value="1"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Street">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Nazwa ulicy
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Street name
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="80"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Country">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Kod kraju - słownik PDR 007A
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Country code - PDR glossary 007A
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:length value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="HouseNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Numer budynku
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Building number
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="10"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FlatNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Numer lokalu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Premises number
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="10"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PostalCode">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Kod pocztowy
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Zip code
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:minLength value="1"/>
+      <xs:maxLength value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FirstName">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Imię
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        First name
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="80"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LastName">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Nazwisko
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Surname
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="80"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Address">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Adres pocztowy
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Postal address
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Street" type="tp:Street" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="HouseNumber" type="tp:HouseNumber" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="FlatNumber" type="tp:FlatNumber" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="City" type="tp:City" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Country" type="tp:Country" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="PostalCode" type="tp:PostalCode" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="Date">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Data dzienna
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Daily date
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:date">
+      <xs:minInclusive value="2017-01-01" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DateTime">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Data i czas
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Date and time
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:dateTime">
+      <xs:minInclusive value="2017-01-01T00:00:00" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="IdSisc">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Numer identyfikacyjny podmiotu lub osoby w Systemie Informacyjnym Skarbowo-Celnym
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Identification number of an entity or a person in the Tax and Customs Information System
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="17"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="UserName">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Nazwa użytkownika
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        User name
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2"/>
+      <xs:maxLength value="255"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="UserPassword">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Hasło użytkownika
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        User password
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2"/>
+      <xs:maxLength value="255"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AuthenticationKey">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Odcisk palca certyfikatu użytkownika
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Fingerprint of user’s certificate
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2"/>
+      <xs:maxLength value="400"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Email">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Adres email
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Email address
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="5"/>
+      <xs:maxLength value="255"/>
+      <xs:whiteSpace value="collapse"/>
+      <xs:pattern value="[A-Za-z0-9]+((\.|-|_)[A-Za-z0-9]+)*(@[A-Za-z0-9]+((\.|-|_)[A-Za-z0-9]+)*){1}">
+      </xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Url">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Adres url webservice
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Url webservice address
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:anyURI">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="255"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="IPAddress">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Adres IP serwera
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        IP address
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:pattern
+                  value="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)">
+      </xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Trader">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Podmiot z siedzibą na terytorium Polski lub poza terytorium Polski
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Entity established on the territory of Poland or outside the territory of Poland
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TraderInfo" type="tp:TraderInfo" maxOccurs="1" minOccurs="1" />
+      <xs:element name="TraderAddress" type="tp:Address" maxOccurs="1" minOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TraderInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane identyfikacyjne podmiotu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Entity identification data
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="IdSisc" type="tp:IdSisc" maxOccurs="1" minOccurs="0" />
+      <xs:element name="TraderName" type="tp:TraderName" maxOccurs="1" minOccurs="1" />
+      <xs:element name="TraderIdentityType" type="tp:TraderIdentityType" maxOccurs="1" minOccurs="1" />
+      <xs:element name="TraderIdentityNumber" type="tp:TraderIdentityNumber" maxOccurs="1" minOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TraderName">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Imię i nazwisko albo Nazwa podmiotu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Name of entity
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:minLength value="2"/>
+      <xs:maxLength value="300"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TraderIdentityType">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Typ identyfikatora podmiotu - słownik PDR 1324
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Entity identification type - PDR glossary 1324
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2"/>
+      <xs:maxLength value="10"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TraderIdentityNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Numer identyfikacji podatkowej
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Tax Identification Number
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="4"/>
+      <xs:maxLength value="32"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Comments">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Uwagi albo informacje uzupełniające
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Comments or additional information
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="2000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DocumentId">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Numer własny dokumentu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Own document number
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2"/>
+      <xs:maxLength value="70"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ChecksumOfDocument">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Suma kontrolna dokumentu podana w formacie SHA-1
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Checksum of the document provided in the SHA-1 format
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:whiteSpace value="collapse"/>
+      <xs:minLength value="2"/>
+      <xs:maxLength value="120"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ListOfMessages">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Lista z informacjami o operacji lub o błędach w walidacji zgłoszenia
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        List of information on the operation or errors in notification validation
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TypeOfOperation" type="tp:TypeOfOperation" minOccurs="1" maxOccurs="1" />
+      <xs:element name="CodeOfMessage" type="tp:CodeOfMessage" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Message" type="tp:Message" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TypeOfOperation">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Typ operacji na komunikacie
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Operation type in the message
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:enumeration value="rejestracja"/>
+      <xs:enumeration value="aktualizacja"/>
+      <xs:enumeration value="anulowanie"/>
+      <xs:enumeration value="zamkniecie"/>
+      <xs:enumeration value="odrzucenie"/>
+      <xs:enumeration value="odczyt"/>
+      <xs:enumeration value="inna"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CodeOfMessage">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Kod komunikatu / błędu - słownik PDR XXX
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Message / error code - PDR glossary XXX
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:whiteSpace value="collapse"/>
+      <xs:minExclusive value="0"/>
+      <xs:maxExclusive value="999"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Message">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Treść komunikatu / błędu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Message / error text
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:minLength value="2"/>
+      <xs:maxLength value="500"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TypeOfNotification">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Typ komunikatu (0 - informacja o błędzie, 1 - informacja o poprawnym wykonaniu operacji)
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Type of notification (0 - information with errors, 1 - information about valid operation)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SystemInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacja o systemie i podmiocie tworzącym komunikat
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information on the system and the entity creating the message
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OrganisationName" type="xs:string" minOccurs="1" maxOccurs="1" fixed="Ministerstwo Finansów"/>
+      <xs:element name="SystemName" type="xs:string" minOccurs="1" maxOccurs="1" fixed="eTOOL"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="Latitude">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Szerokość geograficzna wyrażona w stopniach dziesiętnych.
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Wartość zawiera się w zakresie od 49.00 do 54.84
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Pole wymagane zgodnie z przepisami ustawy o monitorowaniu drogowego i kolejowego przewozu towarów
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Latitude expressed in decimal degrees.
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        The value ranges from 49.00 to 54.84
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Field is required in accordance with the Act on monitoring road and rail carriage of goods
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal">
+      <xs:whiteSpace value="collapse"/>
+      <xs:pattern value="\d{2}\.\d{4,10}"/>
+      <xs:maxInclusive value="54.84"/>
+      <xs:minInclusive value="49.00"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Longitude">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Długość geograficzna wyrażona w stopniach dziesiętnych.
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Wartość zawiera się w zakresie od 14.12 do 24.16
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Pole wymagane zgodnie z przepisami ustawy o monitorowaniu drogowego i kolejowego przewozu towarów
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Longitude expressed in decimal degrees.
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Wartość zawiera się w zakresie od 14.12 do 24.16
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Field is required in accordance with the Act on monitoring road and rail carriage of goods
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal">
+      <xs:whiteSpace value="collapse"/>
+      <xs:pattern value="\d{2}\.\d{4,10}"/>
+      <xs:minInclusive value="14.12"/>
+      <xs:maxInclusive value="24.16"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="WsSystemNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Identyfikator Systemu WebService
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        WebService system identifier
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:pattern value="[W][S]-[A,B,C,E,F,G,H,K,M,N,P,R,S,T,W,X,Y,Z]{4}-[0-9]{1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LocatorNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Numer urządzenia/lokalizatora GPS
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        GPS locator number
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:pattern value="[Z,A,U,M][0-9]{2}-[A,B,C,E,F,G,H,K,M,N,P,R,S,T,W,X,Y,Z]{2}[0-9]{2}[A,B,C,E,F,G,H,K,M,N,P,R,S,T,W,X,Y,Z]{2}-[0-9]{1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ZSLServiceStatus">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Status usługi ZSL Operatora
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Status of the ZSL operator's service
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:enumeration value="0">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            zarejestrowany
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            registered
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            zmodyfikowany
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            modified
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            anulowany
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            cancelled
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="GPSDevicesPosition">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Lista aktywnych urządzeń GPS powiązanych z przewoźnikiem wraz z zarejestrowaną w SENT-GEO ostatnią pozycją GPS
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        List of active GPS devices related to the carrier, including last registered GPS position in SENT-GEO
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DataRow" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="GPSDeviceID" type="tp:GPSDeviceIDAsString" />
+            <xs:element name="GeoLocatorNumber" type="tp:LocatorNumber" />
+            <xs:element name="GPSPositionDate" type="tp:DateTime" />
+            <xs:element name="Latitude" type="tp:Latitude" />
+            <xs:element name="Longitude" type="tp:Longitude" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GPSPosition">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Lokalizacja urządzenia GPS zgłoszonego w przewozie
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Location of the GPS device reported in the transport
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Latitude" type="tp:Latitude" />
+      <xs:element name="Longitude" type="tp:Longitude" />
+      <xs:element name="Date" type="tp:DateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="NewPassword">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Nowe hasło
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        New password
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:minLength value="8"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="GPSDevice">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacje o identyfikatorze technicznym urządzenia GPS przewoźnika powiązanym z usługą ZSL
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information about the technical identifier of the transport GPS device associated with the ZSL service
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GPSDeviceID" type="tp:GPSDeviceID" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Identyfikator techniczny urządzenia GPS przewoźnika powiązany z usługą ZSL
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            The technical identifier of the GPS device related to the ZSL service
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AdditionalInformation" type="tp:AdditionalInformation" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Informacje dodatkowe o urządzeniu
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Additional information about device
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GPSDeviceAsString">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacje o identyfikatorze technicznym urządzenia GPS przewoźnika powiązanym z usługą ZSL
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information about the technical identifier of the transport GPS device associated with the ZSL service
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GPSDeviceID" type="tp:GPSDeviceIDAsString" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Identyfikator techniczny urządzenia GPS przewoźnika powiązany z usługą ZSL
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            The technical identifier of the GPS device related to the ZSL service
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AdditionalInformation" type="tp:AdditionalInformation" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Informacje dodatkowe o urządzeniu
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Additional information about device
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="GPSDeviceID">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Identyfikator techniczny urządzenia GPS przewoźnika powiązany z usługą ZSL
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        The technical identifier of the GPS device related to the ZSL service
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse" />
+      <xs:pattern value="[A-Za-z0-9_-]{1,50}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="GPSDeviceIDAsString">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Identyfikator techniczny urządzenia GPS przewoźnika powiązany z usługą ZSL
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        The technical identifier of the GPS device related to the ZSL service
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse" />
+      <xs:minLength value="1" />
+      <xs:maxLength value="50" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AdditionalInformation">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacje dodatkowe o urządzeniu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Additional information about device
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse" />
+      <xs:minLength value="1"/>
+      <xs:maxLength value="255"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="GpsData">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane lokalizacyjne urządzenia GPS
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        GPS data of GPS device
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LocatorNumber" type="tp:LocatorNumber" />
+      <xs:element name="Latitude" type="tp:Latitude" />
+      <xs:element name="Longitude" type="tp:Longitude" />
+      <xs:element name="Date" type="tp:DateTime" />
+      <xs:element name="Event" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OfficialInformation">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dodatkowe informacje lub komunikaty urzędowe
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Additional information or official messages
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="InfoType" type="tp:InfoType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="InfoOperator" type="tp:InfoReceiver" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="InfoName" type="tp:InfoTitle" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="InfoValue" type="tp:InfoContent" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="InfoDescription" type="tp:InfoContent" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="InfoType">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Typ informacji - słownik PDR 1321
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Type of information - PDR 1321 glossary
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="300"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="InfoReceiver">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Adresat informacji - słownik PDR 1322
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information recipient - PDR 1322 glossary
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="300"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="InfoTitle">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Temat informacji
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information subject
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="300"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="InfoContent">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacja
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="OBEServiceNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Identyfikator usługi OBE Operatora
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        OBE operator's service identifier
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:pattern value="(([Z][S][L])|([O][B][U]))-[A,B,C,E,F,G,H,K,M,N,P,R,S,T,W,X,Y,Z]{4}-[0-9]{1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OBEServiceType">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Typ usługi ZSL/OBU (ETOLL, SENT-GEO)
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Type of ZSL/OBU service (ETOLL, SENT-GEO)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ETOLL" type="xs:boolean" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Usługa dostosowana do ETOLL
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Service customizwed for ETOLL
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SENT" type="xs:boolean" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Usługa dostosowana do SENT-GEO
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Service customized for SENT-GEO
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="PhoneNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Numer telefonu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Phone number
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="12"/>
+      <xs:minLength value="1"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="OBEServiceSelfName">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Nazwa własna usługi ZSL/OBU
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Self name of ZSL/OBU service
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="5"/>
+      <xs:maxLength value="255"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OBEOperatorServiceData">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Lista zarejestrowanych usług ZSL/OBU Operatora
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        List of registered ZSL/OBU operator's services
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OBEServiceNumber" type="tp:OBEServiceNumber"/>
+      <xs:element name="OBEServiceSelfName" type="tp:OBEServiceSelfName"/>
+      <xs:element name="OBEServiceType" type="tp:OBEServiceType"/>
+      <xs:element name="OBEServiceStatus" type="tp:OBEServiceStatus"/>
+      <xs:element name="CreationDate" type="tp:DateTime"/>
+      <xs:element name="Creator" type="tp:UserName"/>
+      <xs:element name="ModificationDate" type="tp:DateTime"/>
+      <xs:element name="Modifier" type="tp:UserName"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="OBEServiceStatus">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Status usługi ZSL/OBU Operatora. Slownik PDR ......
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Status of the ZSL/OBU operator's service. PDR dict ......
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="OBEOperatorStatus">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Status Operatora usługi ZSL/OBU Operatora. Slownik PDR ......
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Status of the ZSL/OBU service operator. PDR dict ......
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ResponseInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacje dotyczące rejestracji/zmiany/podglądu danych w systemie
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information about registration, change or preview data w systemie
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ChecksumOfRequestDocument" type="tp:ChecksumOfDocument" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="DocumentId" type="tp:DocumentId" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OBERegistrationInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacje dotyczące rejestracji/zmiany/podglądu danych w systemie
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information about registration, change or preview data w systemie
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CreationDate" type="tp:DateTime" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Creator" type="tp:UserName" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="ModificationDate" type="tp:DateTime" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Modifier" type="tp:UserName" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GPSDevicesListDataForOperator">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Lista zarejestrowanych urządzeń GPS korzystających z usług ZSL Operatora
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        List of registered GPS devices using ZSL operator services
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DataRow" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CarrierIdentityNumber" type="tp:TraderIdentityNumber" />
+            <xs:element name="GPSDeviceID" type="tp:GPSDeviceID" />
+            <xs:element name="GPSDeviceStatus" type="xs:string" />
+            <xs:element name="CreationDate" type="tp:DateTime" />
+            <xs:element name="ModificationDate" type="tp:DateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GPSDeviceData">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacja o urzadzeniu GPS zarejestrowanym w usłudze ZSL/OBU Operatora
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information about GPS device registered in ZSL/OBU operator service
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GPSDeviceID" type="tp:GPSDeviceID"/>
+      <xs:element name="GeoLocatorNumber" type="tp:LocatorNumber"/>
+      <xs:element name="GeoLocatorPIN" type="xs:string"/>
+      <xs:element name="GPSDeviceStatus" type="xs:string"/>
+      <xs:element name="AdditionalInformation" type="tp:AdditionalInformation"/>
+      <xs:element name="CreationDate" type="tp:DateTime"/>
+      <xs:element name="Creator" type="tp:UserName"/>
+      <xs:element name="ModificationDate" type="tp:DateTime"/>
+      <xs:element name="Modifier" type="tp:UserName"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GPSDeviceDataWithLastGeoPosition">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacja o urzadzeniu GPS zarejestrowanym w usłudze ZSL/OBU Operatora wraz z ostatnią zarejestrowaną pozycją GPS
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information about GPS device registered in ZSL/OBU operator service including last registered GPS position in SENT-GEO
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GPSDeviceID" type="tp:GPSDeviceID"/>
+      <xs:element name="GeoLocatorNumber" type="tp:LocatorNumber"/>
+      <xs:element name="GPSPositionDate" type="tp:DateTime"/>
+      <xs:element name="Latitude" type="tp:Latitude"/>
+      <xs:element name="Longitude" type="tp:Longitude"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OperatorContactInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacje kontaktowe do administratora operatora usługi ZSL/OBU
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Contact information to the administrator of the ZSL/OBU service operator
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OperatorPhoneNumber" type="tp:PhoneNumber" maxOccurs="1" minOccurs="1"/>
+      <xs:element name="OperatorEmailAddress" type="tp:Email" maxOccurs="1" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OBEResponseChannel">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Kanał komunikacyjny Web Service operatora usługi ZSL/OBU
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Web service channel of the ZSL/OBU service operator
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="UrlAddress" type="tp:Url" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="UserName" type="tp:UserName" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="UserPassword" type="tp:UserPassword" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CertificateFingerPrint" type="tp:AuthenticationKey" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OBEResponseChannelOAuth">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Kanał komunikacyjny Web Service oparty o usługę OAuth operatora usługi ZSL/OBU
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        OAuth web service channel of the ZSL/OBU service operator
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OAuthMainEndpoint" type="tp:Url" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="OAuthEndpoint" type="tp:Url" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="OAuthClientId" type="tp:UserName" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="OAuthClientSecret" type="tp:UserPassword" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="OAuthGrantType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="OAuthScope" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="OBEOperatorType">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Typ operatora usługi ZSL/OBU
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        ............................
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OBU">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Operator urządzeń OBU
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ZSL">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Operator urządzeń ZSL
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="GPSDeviceInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacja o urzadzeniu GPS związanym z usługą ZSL/OBU
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information about GPS device related with ZSL/OBU service
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OBEServiceNumber" type="tp:OBEServiceNumber" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="GPSDeviceID" type="tp:GPSDeviceID" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="GeoLocatorNumber" type="tp:LocatorNumber" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="GeoLocatorPIN" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="GPSDeviceStatus" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="AdditionalInformation" type="tp:AdditionalInformation" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ETOLL" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="SENT" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+      <xs:element name="CreationDate" type="tp:DateTime" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Creator" type="tp:UserName" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ModificationDate" type="tp:DateTime" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Modifier" type="tp:UserName" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="MobilePhoneNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Numer telefonu komórkowego
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Mobile phone number
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="9"/>
+      <xs:maxLength value="9"/>
+      <xs:whiteSpace value="collapse"/>
+      <xs:pattern value="[0-9]{9}">
+      </xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LimitOfRecords">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Limit rekordów od/do.
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Record limit from / to.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:whiteSpace value="collapse"/>
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="10000000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SortAttributeName">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Lista atrybutów do sortowania
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        List of attributes to sort
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OBEServiceNumber"/>
+      <xs:enumeration value="GPSDeviceID"/>
+      <xs:enumeration value="GeoLocatorNumber"/>
+      <xs:enumeration value="GPSDeviceStatus"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SortOrder">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Porządek sortowania
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Sort order
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ASC"/>
+      <xs:enumeration value="DESC"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TotalCount">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Liczba znalezionych rekordów dla zadnych kryteriów wyszukania
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        The number of found records for any search criteria
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:whiteSpace value="collapse"/>
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="GPSDeviceStatus">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Status urzadzenia ZSL/OBU. Slownik PDR ......
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Status of the ZSL/OBU device. PDR dict ......
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OBEDevicesSearchAttributes">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Wartości pól wyszukiwania urządzeń
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Devices search attributes
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OBEServiceNumber" type="tp:OBEServiceNumber" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Numer usługi ZSL/OBU
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Number of the ZSL/OBU service
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GPSDeviceID" type="tp:GPSDeviceID" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Identyfikator techniczny urządzenia GPS przewoźnika powiązany z usługą ZSL
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            The technical identifier of the GPS device related to the ZSL service
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GeoLocatorNumber" type="tp:LocatorNumber" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Numer urządzenia/lokalizatora GPS
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            GPS locator number
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GPSDeviceStatus" type="tp:GPSDeviceStatus" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Status urzadzenia ZSL/OBU. Slownik PDR ......
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Status of the ZSL/OBU device. PDR dict ......
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OBEDevicesLimitValues">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Atrybuty limitu danych w rejestrze
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Data limit attributes in the registry
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TotalCount" type="tp:TotalCount" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Liczba znalezionych rekordów dla zadnych kryteriów wyszukania
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            The number of found records for any search criteria
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LimitFrom" type="tp:LimitOfRecords" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Indeks rekordów zaczynający się od wartośći 0. Rekord o tym indeksie zostanie pobrany.
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Record index starting with the value 0. The record with this index will be downloaded.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LimitTo" type="tp:LimitOfRecords" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Indeks rekordów. Ostatnim pobranym rekordem będzie rekord o indeksie (LimitTo-1).
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Record index. The last record downloaded will be the record with the index (LimitTo-1).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OBEDevicesSortAttributes">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Atrybuty sortowania
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Sorting attributes
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SortAttributeName" type="tp:SortAttributeName"  minOccurs="1" maxOccurs="1"/>
+      <xs:element name="SortOrder" type="tp:SortOrder" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

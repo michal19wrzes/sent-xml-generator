@@ -1,0 +1,1756 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:op="http://www.mf.gov.pl/SENT/2017/12/08/OTypes.xsd" xmlns:tp="http://www.mf.gov.pl/SENT/2017/12/08/STypes.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.mf.gov.pl/SENT/2017/12/08/OTypes.xsd">
+  <xs:import namespace="http://www.mf.gov.pl/SENT/2017/12/08/STypes.xsd" schemaLocation="STypes.xsd"/>
+  <xs:simpleType name="HeadOfTaxOfficeCode">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Kod urzędu skarbowego - słownik PDR 1319
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Code of Tax Office - PDR glossary 1319
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:pattern value="\d{6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="HeadOfTaxOfficeName">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Nazwa naczelnika urzędu skarbowego - słownik PDR 1319
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Head name of Tax Office - PDR glossary 1319
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1">
+      </xs:minLength>
+      <xs:maxLength value="200">
+      </xs:maxLength>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="HeadOfTaxOffice">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Organ do którego składane jest zgłoszenie
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        .........................................
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="HeadOfTaxOfficeCode" type="op:HeadOfTaxOfficeCode" maxOccurs="1" minOccurs="1" />
+      <xs:element name="HeadOfTaxOfficeName" type="op:HeadOfTaxOfficeName" maxOccurs="1" minOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HeadOfTaxOfficeInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Organ i miejsce wydania potwierdzenia rejestracji zgłoszenia uproszczonego
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        ......................................................
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="HeadOfTaxOffice" type="op:HeadOfTaxOffice" maxOccurs="1" minOccurs="1" />
+      <xs:element name="AddressOfTaxOffice" type="tp:Address" maxOccurs="1" minOccurs="1" />
+      <xs:element name="TaxOfficeName" type="xs:string" maxOccurs="1" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatusOfOilEntity">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Status podmiotu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Status of entity
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OilBroker" type="xs:boolean" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Pośredniczący podmiot olejowy
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            .............................
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OilConsumer" type="xs:boolean" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Zużywający podmiot olejowy
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            ....................................
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilEntity">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane identyfikacyjne
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Identification of the entity
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice minOccurs="1" maxOccurs="1">
+      <xs:element name="Trader" type="op:OilTrader" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Dane identyfikacyjne podmiotu
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            .............................
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Person" type="op:OilPerson" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Dane identyfikacyjne osoby fizycznej
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            ....................................
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="OilTrader">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Podmiot niebędący osobą fizyczną oraz osoba fizyczna prowadząca działalność gospodarczą
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        ........................................................................................
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TraderInfo" type="op:OilTraderInfo" maxOccurs="1" minOccurs="1" />
+      <xs:element name="TraderAddress" type="op:OilAddressWithMedia" maxOccurs="1" minOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilTraderInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane identyfikacyjne podmiotu niebędącego osobą fizyczną lub osoby fizycznej prowadzącej działalność gospodarczą
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        ...............................................................................................................
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TypeOfTrader" type="op:TypeOfOilTrader" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="IdSisc" type="tp:IdSisc" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="TraderOrPersonName" type="tp:TraderName" maxOccurs="1" minOccurs="1"/>
+      <xs:element name="FirstName" type="tp:FirstName" minOccurs="0" maxOccurs="1" />
+      <xs:element name="LastName" type="tp:LastName" minOccurs="0" maxOccurs="1" />
+      <xs:element name="TraderIdentityType" type="tp:TraderIdentityType" maxOccurs="1" minOccurs="1" />
+      <xs:element name="TraderIdentityNumber" type="tp:TraderIdentityNumber" maxOccurs="1" minOccurs="1"/>
+      <xs:element name="TraderDateOfDeath" type="tp:Date" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Data śmierci przedsiębiorcy
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Date of death of oil entity or consuming an oil operator
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilTraderIdentity">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane identyfikacyjne podmiotu niebędącego osobą fizyczną lub osoby fizycznej prowadzącej działalność gospodarczą
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TraderIdentityType" type="tp:TraderIdentityType" maxOccurs="1" minOccurs="1" fixed="NIP"/>
+      <xs:element name="TraderIdentityNumber" type="tp:Nip" maxOccurs="1" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TypeOfOilTrader">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Rodzaj podmiotu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Type of entity
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Osoba fizyczna prowadząca działalność gospodarczą
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            .................................................
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Osoba prawna
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            ............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Jednostka organizacyjna nieposiadająca osobowości prawnej
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            .........................................................
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Przedsiębiorstwo w spadku
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            .........................
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OilPerson">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Osoba fizyczna nieprowadząca działalności gospodarczej
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        ......................................................
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PersonInfo" type="op:OilPersonInfo" maxOccurs="1" minOccurs="1" />
+      <xs:element name="PersonAddress" type="op:OilAddressWithMedia" maxOccurs="1" minOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilPersonInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane identyfikacyjne osoby fizycznej
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Identification data of a natural person
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TypeOfPerson" type="xs:string" minOccurs="1" maxOccurs="1" fixed="0"/>
+      <xs:element name="IdSisc" type="tp:IdSisc" minOccurs="0" maxOccurs="1" />
+      <xs:element name="FirstName" type="tp:FirstName" minOccurs="1" maxOccurs="1" />
+      <xs:element name="LastName" type="tp:LastName" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Nationality" type="tp:Country" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="PersonIdentityType" type="op:OilPersonIdentityType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="PersonIdentityNumber" type="tp:PersonIdentityNumber" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilPersonIdentity">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane identyfikacyjne osoby fizycznej
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Identification data of a natural person
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PersonIdentityType" type="op:OilPersonIdentityType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="PersonIdentityNumber" type="tp:PersonIdentityNumber" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="OilPersonIdentityType">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Typ dokumentu tożsamości
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Identification document type
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PESEL">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Numer identyfikacyjny PESEL
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DO">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            DOWOD OSOBISTY
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PS">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            PASZPORT
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="KS">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            KARTA STAŁEGO POBYTU
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PJ">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            PRAWO JAZDY
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:whiteSpace value="collapse">
+      </xs:whiteSpace>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OilAddress">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane adresowe
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        .............
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Street" type="tp:Street" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="HouseNumber" type="tp:HouseNumber" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="FlatNumber" type="tp:FlatNumber" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="City" type="tp:City" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Country" type="tp:Country" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="PostalCode" type="tp:PostalCode" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Post" type="op:Post" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Province" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Nazwa województwa zgodna ze słwonikiem jednostek podziału terytorialnego TERC - słownik PDR 501A
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="County" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Nazwa powiatu zgodna ze słwonikiem jednostek podziału terytorialnego TERC - słownik PDR
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Commune" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Nazwa gminy zgodna ze słwonikiem jednostek podziału terytorialnego TERC - słownik PDR
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            .............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CodeTERC" type="tp:CodeTERC" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Pole jest obligatoryjne jeśli Country jest "PL"
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            .............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CodeSIMC" type="tp:CodeSIMC" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CodeULIC" type="tp:CodeULIC" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilAddressWithMedia">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane adresowe do korespondencji
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Correspondence address
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="op:OilAddress">
+        <xs:sequence>
+          <xs:element name="PhoneNumber" type="op:PhoneNumber" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="Fax" type="op:Fax" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="Email" type="tp:Email" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OilAddressWithConcession">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane adresowe do korespondencji
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Correspondence address
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="op:OilAddress">
+        <xs:sequence>
+          <xs:element name="ConcessionNumber" type="op:ConcessionNumber" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OilAddressWithGeo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane adresowe do korespondencji
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Correspondence address
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="op:OilAddress">
+        <xs:sequence>
+          <xs:element name="Latitude" type="tp:Latitude" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Longitude" type="tp:Longitude" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Post">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Poczta
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Post
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="60">
+      </xs:maxLength>
+      <xs:minLength value="1">
+      </xs:minLength>
+      <xs:whiteSpace value="collapse">
+      </xs:whiteSpace>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PhoneNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Numer telefonu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Phone number
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="12"/>
+      <xs:minLength value="1"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Fax">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Numer faksu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Fax number
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="12"/>
+      <xs:minLength value="1"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ConcessionNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Numer koncesji
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Concession number
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50">
+      </xs:maxLength>
+      <xs:minLength value="1">
+      </xs:minLength>
+      <xs:whiteSpace value="collapse">
+      </xs:whiteSpace>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="HeatingDevices">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane dotyczące posiadanych przez zużywający podmiot olejowy urządzeń grzewczych, miejsca (adresu) gdzie znajdują się te urządzenia oraz przewidywanej ilości zużywanych w roku kalendarzowym wyrobów akcyzowych, o których mowa w art. 89 ust.1 pkt 9,10 i pkt 15 lit A ustawy z dnia 6 grudnia 2008 r. o podatku akcyzowym
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="HeatingAddress" type="op:HeatingAddress" minOccurs="0" maxOccurs="2000"/>
+      <xs:element name="MobileDevice" type="op:HeatingDevice" minOccurs="0" maxOccurs="500"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HeatingDevicesWithRegNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane dotyczące posiadanych przez zużywający podmiot olejowy urządzeń grzewczych, miejsca (adresu) gdzie znajdują się te urządzenia oraz przewidywanej ilości zużywanych w roku kalendarzowym wyrobów akcyzowych, o których mowa w art. 89 ust.1 pkt 9,10 i pkt 15 lit A ustawy z dnia 6 grudnia 2008 r. o podatku akcyzowym wraz z nadanymi numerami identyfikacyjnymi adresów i urządzeń
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="HeatingAddress" type="op:HeatingAddressWithRegNumber" minOccurs="0" maxOccurs="2000"/>
+      <xs:element name="MobileDevice" type="op:HeatingDeviceWithRegNumber" minOccurs="0" maxOccurs="500"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HeatingAddress">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane dotyczące posiadanych przez zużywający podmiot olejowy stacjonarnych urządzeń grzewczych, miejsca (adresu) gdzie znajdują się te urządzenia oraz przewidywanej ilości zużywanych w roku kalendarzowym wyrobów akcyzowych, o których mowa w art. 89 ust.1 pkt 9,10 i pkt 15 lit A ustawy z dnia 6 grudnia 2008 r. o podatku akcyzowym
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StationaryAddress" type="op:OilAddressWithGeo" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="StationaryDevice" type="op:HeatingDevice" minOccurs="1" maxOccurs="100"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HeatingAddressWithRegNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane dotyczące posiadanych przez zużywający podmiot olejowy stacjonarnych urządzeń grzewczych, miejsca (adresu) gdzie znajdują się te urządzenia oraz przewidywanej ilości zużywanych w roku kalendarzowym wyrobów akcyzowych, o których mowa w art. 89 ust.1 pkt 9,10 i pkt 15 lit A ustawy z dnia 6 grudnia 2008 r. o podatku akcyzowym wraz z nadanymi numerami identyfikacyjnymi adresów urządzeń stacjonarnych grzewczych
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="HeatingAddressRegNumber" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="StationaryAddress" type="op:OilAddressWithGeo" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="StationaryDevice" type="op:HeatingDevice" minOccurs="1" maxOccurs="100"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HeatingDevice">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Paramerty posiadanego przez zużywający podmiot olejowy urządzenia grzewczego o których mowa w art. 89 ust.1 pkt 9,10 i pkt 15 lit A ustawy z dnia 6 grudnia 2008 r. o podatku akcyzowym
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="KindOfDevice" type="op:KindOfDevice" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="TypeOfDevice" type="op:TypeOfDevice" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Power" type="op:Power" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="AmountOfGoods" type="tp:Amount" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Przewidywana ilość zużywanych w ciągu roku przez urządzenie grzewcze wyrobów (litry dla lekkiego, kilogramy dla ciężkiego)
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Expected amount of products consumed by the heating device during the year (in liters or kilograms)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UnitOfMeasure" type="tp:UnitOfMeasure" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HeatingDeviceWithRegNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Paramerty posiadanego przez zużywający podmiot olejowy urządzenia grzewczego o których mowa w art. 89 ust.1 pkt 9,10 i pkt 15 lit A ustawy z dnia 6 grudnia 2008 r. o podatku akcyzowym wraz z nadanym numerem identyfikacyjnym urządzenia
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MobileDeviceRegNumber" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="KindOfDevice" type="op:KindOfDevice" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="TypeOfDevice" type="op:TypeOfDevice" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Power" type="op:Power" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="AmountOfGoods" type="tp:Amount" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Przewidywana ilość zużywanych w ciągu roku przez urządzenie grzewcze wyrobów (litry dla lekkiego, kilogramy dla ciężkiego)
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Expected amount of products consumed by the heating device during the year (in liters or kilograms)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UnitOfMeasure" type="tp:UnitOfMeasure" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="KindOfDevice">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Rodzaj (producent)
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        ..................
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="60"/>
+      <xs:minLength value="1"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TypeOfDevice">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Typ (model)
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        .................
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="60"/>
+      <xs:minLength value="1"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Power">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Moc (w kW)
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Power (in kW)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal">
+      <xs:whiteSpace value="collapse">
+      </xs:whiteSpace>
+      <xs:minExclusive value="0">
+      </xs:minExclusive>
+      <xs:maxExclusive value="999999">
+      </xs:maxExclusive>
+      <xs:totalDigits value="8" />
+      <xs:fractionDigits value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OilEntityHeatingAddressBalanced">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacje o zarejestrowanym adresie zużycia oleju opałowego z bilansem zużycia
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="HeatingAddressRegNumber" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="StationaryAddress" type="op:OilAddressWithGeo" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="PlannedConsumptionL" type="tp:Amount" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="PlannedConsumptionKG" type="tp:Amount" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="BalanceL" type="tp:Amount" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="BalanceKG" type="tp:Amount" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="BalancePerDay" type="tp:Date" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilEntityMobileDeviceBalanced">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacje o zarejestrowanym urzadzeniu mobilnym zużywającym olej opałowy z bilansem zużycia
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MobileDeviceRegNumber" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="PlannedConsumption" type="tp:Amount" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="UnitOfMeasure" type="tp:UnitOfMeasure" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Balance" type="tp:Amount" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="BalancePerDay" type="tp:Date" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilEntityRegisteredOilTransaction">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacje o zgłoszeniu przewozu oleju opałowego potwierdzone przez podmiot zużywający
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SentNumber" type="tp:SentNumber" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="CreationDate" type="tp:DateTime" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Creator" type="tp:UserName" minOccurs="1" maxOccurs="1" />
+      <xs:element name="OilSenderId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="OilRecipientId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="HeatingAddressRegNumber" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="MobileDeviceRegNumber" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="AmountOfGoods" type="tp:Amount" minOccurs="1" maxOccurs="1" />
+      <xs:element name="UnitOfMeasure" type="tp:UnitOfMeasure" minOccurs="1" maxOccurs="1" />
+      <xs:element name="AgreementNumber" type="tp:AgreementNumber" minOccurs="0" maxOccurs="1" />
+      <xs:element name="TransactionCode" type="tp:RecipientTransactionCode" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilEntityAuthorizedData">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane autoryzacyjne podmiotu pośredniczącego lub zużywającego
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element name="TraderIdentity" type="op:OilTraderIdentity" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Dane identyfikacyjne podmiotu niebedącego osobą fizyczną lub osoby fizycznej prowadzącej działalność gospodarczą
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="PersonIdentity" type="op:OilPersonIdentity" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation source="doc" xml:lang="pl">
+              Dane identyfikacyjne podmiotu bedącego osobą fizyczną nieprowadzącą działalności gospodarczej
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CessationOfActivities">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane o zaprzestaniu wykonywania czynności jako pośredniczący podmiot olejowy lub zużywający podmiot olejowy
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Data on cessation of activities as an intermediary oil entity or consuming an oil operator
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DateOfCessation" type="tp:Date" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Data zaprzestania wykonywania czynności jako pośredniczący podmiot olejowy lub zużywający podmiot olejowy
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Date of cessation of activities as an intermediary oil entity or consuming an oil operator
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReasonForCeasing" type="op:ReasonForCeasing" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Przyczyna zaprzestania wykonywania czynności
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            The reason for ceasing to perform activities
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ExplanationOfReason" type="op:ExplanationOfReason" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Wyjaśnienie przyczyny zaprzestania wykonywania czynności
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Explanation of the reason for ceasing to perform activities
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ReasonForCeasing">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Przyczyna zaprzestania wykonywania czynności
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        The reason for ceasing to perform activities
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Likwidacja
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            ............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Upadłość
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            ............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Śmierć podmiotu
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            ...............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Inna
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            .............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ReasonForCeasingForBusinessUser">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Przyczyna zaprzestania wykonywania czynności
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        The reason for ceasing to perform activities
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:enumeration value="0">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Anulowanie nieautoryzowanej rejestracji
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            ............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Likwidacja
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            ............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Upadłość
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            ............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Śmierć podmiotu
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            ...............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Inna
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            .............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="5">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Wyrejestrowanie z Urzedu
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            .............
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TypeOfOilConfirmation">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Rodzaj potwierdzenia rejestracji podmiotu do celów opałowych
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int">
+      <xs:whiteSpace value="collapse"/>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Podgląd aktualnego stanu zgłoszenia rejestracyjnego
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Potwierdzenie uproszczone AKC-PRU
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Pobranie oryginału zgłoszenia do podpisania i autoryzacji
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TypeOfOilEntityData">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Rodzaj informacji o podmiocie olejowym
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int">
+      <xs:whiteSpace value="collapse"/>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Podgląd aktualnego stanu zgłoszenia rejestracyjnego
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Pobranie historii zgłoszenia rejestracyjnego
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Pobranie listy adresów i urządzeń podmiotu olejowego
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExplanationOfReason">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Wyjaśnienie przyczyny zaprzestania wykonywania czynności
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Explanation of the reason for ceasing to perform activities
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="4000"/>
+      <xs:minLength value="1"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AgreementNumber">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Identyfikator umowy
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Agreement identifier
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse">
+      </xs:whiteSpace>
+      <xs:pattern value="[S][E][N][T][O][I][L][1234567890]{4}[1234567890]{6}">
+      </xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TransactionCodes">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Kody transakcyjne
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Transaction codes
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TransactionCode" type="op:TransactionCode" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransactionCode">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Kod transakcyjny
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Transaction code
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TransactionCodeValue" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="TransactionCodeStatus" type="tp:SentStatus" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="CreationDate" type="tp:DateTime" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Creator" type="tp:UserName" minOccurs="1" maxOccurs="1" />
+      <xs:element name="ConsumptionDate" type="tp:DateTime" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CancellationDate" type="tp:DateTime" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Modifier" type="tp:UserName" minOccurs="0" maxOccurs="1" />
+      <xs:element name="SentNumber" type="tp:SentNumber" minOccurs="0" maxOccurs="1" />
+      <xs:element name="SentDate" type="tp:DateTime" minOccurs="0" maxOccurs="1" />
+      <xs:element name="TransactionCodeQR" type="xs:string" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AgreementSearchAttributes">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Atrybuty wyszukiwania w rejestrze umów
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Search attributes in the SENT registry
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AgreementNumber" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="SenderIdentityNumber" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="RecipientIdentityNumber" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="SenderName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="RecipientName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="DateAgreementFrom" type="tp:Date" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="DateAgreementTo" type="tp:Date" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CreatedDateStart" type="tp:DateTime" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CreatedDateEnd" type="tp:DateTime" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Status" type="xs:string" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodeSearchAttributes">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Atrybuty wyszukiwania w rejestrze kodów transakcyjnych
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Search attributes in the SENT registry
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CodeCreationDateFrom" type="tp:Date" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CodeCreationDateTo" type="tp:Date" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="EntityNumber" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="SentNumber" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="TransactionCodeStatus" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="TransactionCodeType" type="xs:string" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AgreementLimitValues">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Atrybuty limitu danych w rejestrze
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Data limit attributes in the registry
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TotalCount" type="op:TotalCount" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="LimitFrom" type="op:LimitOfRecords" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            LimitFrom - indeks rekordów zaczynający się od wartośći 0. Rekord o tym indeksie zostanie pobrany.
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            LimitFrom - record index starting with the value 0. The record with this index will be downloaded.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LimitTo" type="op:LimitOfRecords" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            LimitTo - indeks rekordów. Ostatnim pobranym rekordem będzie rekord o indeksie (LimitTo - 1).
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            LimitTo - record index. The last record downloaded will be the record with the index (LimitTo - 1).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResultsOnSite" type="xs:integer" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Ilość wyników wyświetlana na stronie
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Number of results on the site
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IsAndOperator" type="xs:boolean" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Wyszukiwanie AND / OR
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Search AND / OR
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodeLimitValues">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Atrybuty limitu danych w rejestrze
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Data limit attributes in the registry
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TotalCount" type="op:TotalCount" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="LimitFrom" type="op:LimitOfRecords" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            LimitFrom - indeks rekordów zaczynający się od wartośći 0. Rekord o tym indeksie zostanie pobrany.
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            LimitFrom - record index starting with the value 0. The record with this index will be downloaded.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LimitTo" type="op:LimitOfRecords" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            LimitTo - indeks rekordów. Ostatnim pobranym rekordem będzie rekord o indeksie (LimitTo - 1).
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            LimitTo - record index. The last record downloaded will be the record with the index (LimitTo - 1).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IsAndOperator" type="xs:boolean" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Wyszukiwanie AND / OR
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Search AND / OR
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TotalCount">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Liczba znalezionych rekordów dla zadnych kryteriów wyszukania
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        The number of found records for any search criteria
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:whiteSpace value="collapse">
+      </xs:whiteSpace>
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LimitOfRecords">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Limit rekordów od/do.
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Record limit from / to.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:whiteSpace value="collapse">
+      </xs:whiteSpace>
+      <xs:minInclusive value="0">
+      </xs:minInclusive>
+      <xs:maxInclusive value="10000000">
+      </xs:maxInclusive>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AgreementSortAttributes">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Atrybuty sortowania rejestru umów
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        SENT registry sorting attributes
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SortAttributeName" type="op:AgreementSortAttributeName" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="SortOrder" type="op:AgreementSortOrder" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodeSortAttributes">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Atrybuty sortowania rejestru kodów transakcyjnych
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        SENT registry sorting attributes
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SortAttributeName" type="op:CodeSortAttributeName" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="SortOrder" type="op:CodeSortOrder" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AgreementSortAttributeName">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Lista atrybutów do sortowania w rejestrze umów
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        List of attributes to sort in the SENT register
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AgreementNumber">
+      </xs:enumeration>
+      <xs:enumeration value="SenderIdentityNumber">
+      </xs:enumeration>
+      <xs:enumeration value="RecipientIdentityNumber">
+      </xs:enumeration>
+      <xs:enumeration value="SenderName">
+      </xs:enumeration>
+      <xs:enumeration value="RecipientName">
+      </xs:enumeration>
+      <xs:enumeration value="CreatedDate">
+      </xs:enumeration>
+      <xs:enumeration value="Status">
+      </xs:enumeration>
+      <xs:whiteSpace value="collapse">
+      </xs:whiteSpace>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CodeSortAttributeName">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Lista atrybutów do sortowania w rejestrze kodów transakcyjnych
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        List of attributes to sort in the SENT register
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CodeCreationDate">
+      </xs:enumeration>
+      <xs:enumeration value="EntityNumber">
+      </xs:enumeration>
+      <xs:enumeration value="SentNumber">
+      </xs:enumeration>
+      <xs:enumeration value="CodeRegistrationDate">
+      </xs:enumeration>
+      <xs:enumeration value="TransactionCodeStatus">
+      </xs:enumeration>
+      <xs:enumeration value="TransactionCodeType">
+      </xs:enumeration>
+      <xs:whiteSpace value="collapse">
+      </xs:whiteSpace>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AgreementSortOrder">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Porządek sortowania
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Sort order
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ASC">
+      </xs:enumeration>
+      <xs:enumeration value="DESC">
+      </xs:enumeration>
+      <xs:whiteSpace value="collapse">
+      </xs:whiteSpace>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CodeSortOrder">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Porządek sortowania
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Sort order
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ASC">
+      </xs:enumeration>
+      <xs:enumeration value="DESC">
+      </xs:enumeration>
+      <xs:whiteSpace value="collapse">
+      </xs:whiteSpace>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AgreementData">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane z rejestru umów
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Data from the agreement register
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DataRow" minOccurs="0" maxOccurs="100">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="AgreementId" type="xs:int" />
+            <xs:element name="AgreementNumber" type="xs:string" />
+            <xs:element name="SenderName" type="xs:string" />
+            <xs:element name="SenderIdentityNumber" type="xs:string" />
+            <xs:element name="RecipientName" type="xs:string" />
+            <xs:element name="RecipientIdentityNumber" type="xs:string" />
+            <xs:element name="DateAgreementFrom" type="tp:DateTime" />
+            <xs:element name="DateAgreementTo" type="tp:DateTime" />
+            <xs:element name="AgreementAmountKG" type="xs:string" />
+            <xs:element name="AgreementAmountL" type="xs:string" />
+            <xs:element name="BalanceKG" type="xs:string" />
+            <xs:element name="BalanceL" type="xs:string" />
+            <xs:element name="BalancePerDay" type="tp:DateTime" />
+            <xs:element name="CreationDate" type="tp:DateTime" />
+            <xs:element name="ModificationDate" type="tp:DateTime" />
+            <xs:element name="Status" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodeData">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane z rejestru umów
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Data from the agreement register
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DataRow" minOccurs="0" maxOccurs="100">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CodeId" type="xs:int" />
+            <xs:element name="EntityNumber" type="xs:string" />
+            <xs:element name="CodeCreationDate" type="tp:DateTime" />
+            <xs:element name="CodeRegistrationDate" type="tp:DateTime" />
+            <xs:element name="SentNumber" type="xs:string" />
+            <xs:element name="SentDate" type="tp:DateTime" />
+            <xs:element name="TransactionCodeStatus" type="xs:string" />
+            <xs:element name="TransactionCodeType" type="xs:string" />
+            <xs:element name="ConsumptionDate" type="tp:DateTime" />
+            <xs:element name="CancellationDate" type="tp:DateTime" />
+            <xs:element name="TransactionCodeQR" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="NumberOfCodes">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Liczba kodów transakcyjnych
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Number of transaction codes
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:whiteSpace value="collapse"/>
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OilRegisteredInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane informacyjne o zgłoszeniu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information data on the notification
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CreationDate" type="tp:DateTime" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Creator" type="tp:UserName" minOccurs="1" maxOccurs="1" />
+      <xs:element name="ModificationDate" type="tp:DateTime" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Modifier" type="tp:UserName" minOccurs="1" maxOccurs="1" />
+      <xs:element name="SourceDocumentId" type="tp:DocumentSelfNumber" minOccurs="1" maxOccurs="1" />
+      <xs:element name="ChecksumOfSourceDocument" type="tp:ChecksumOfDocument" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Status" type="xs:string" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilRegisteredFullInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Pełne dane informacyjne o zgłoszeniu
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Full information data on the notification
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OilEntityId" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="OilEntityHistoryId" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="CreationDate" type="tp:DateTime" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Creator" type="tp:UserName" minOccurs="1" maxOccurs="1" />
+      <xs:element name="ModificationDate" type="tp:DateTime" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Modifier" type="tp:UserName" minOccurs="1" maxOccurs="1" />
+      <xs:element name="SourceDocumentId" type="tp:DocumentSelfNumber" minOccurs="1" maxOccurs="1" />
+      <xs:element name="ChecksumOfSourceDocument" type="tp:ChecksumOfDocument" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Status" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="RegistrationMethod" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="ApplicationSignMethod" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="ApplicationAcceptedDate" type="tp:DateTime" minOccurs="0" maxOccurs="1" />
+      <xs:element name="AuthorizationDocumentType" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="AuthorizationDocumentNumber" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="AuthorizationFirstName" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="AuthorizationLastName" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="AuthorizationDate" type="tp:DateTime" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilCodesInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane informacyjne o wniosku
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Information data on the notification
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CreationDate" type="tp:DateTime" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Creator" type="tp:UserName" minOccurs="1" maxOccurs="1" />
+      <xs:element name="SourceDocumentId" type="tp:DocumentSelfNumber" minOccurs="1" maxOccurs="1" />
+      <xs:element name="ChecksumOfSourceDocument" type="tp:ChecksumOfDocument" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilEntityRegistrySearchAttributes">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Atrybuty wyszukiwania w rejestrze SENT
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Search attributes in the SENT registry
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="HeadOfTaxOfficeCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="OilBroker" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="OilConsumer" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="TypeOfOilEntity" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="OilEntityName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="OilEntityIdentityType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="OilEntityIdentityNumber" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Country" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="City" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Street" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Province" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CreatedDateStart" type="tp:DateTime" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CreatedDateEnd" type="tp:DateTime" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Status" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ReasonForCeasing" type="op:ReasonForCeasing" minOccurs="0" maxOccurs="1" />
+      <xs:element name="RegistrationMethod" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="RiskOfAmount" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="RiskOfPower" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="BalanceYear" type="xs:string" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilRegistryLimitValues">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Atrybuty limitu danych w rejestrze
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Data limit attributes in the registry
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TotalCount" type="op:TotalCount" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="LimitFrom" type="op:LimitOfRecords" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            LimitFrom - indeks rekordów zaczynający się od wartośći 0. Rekord o tym indeksie zostanie pobrany.
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            LimitFrom - record index starting with the value 0. The record with this index will be downloaded.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LimitTo" type="op:LimitOfRecords" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            LimitTo - indeks rekordów. Ostatnim pobranym rekordem będzie rekord o indeksie (LimitTo - 1).
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            LimitTo - record index. The last record downloaded will be the record with the index (LimitTo - 1).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResultsOnSite" type="xs:integer" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Ilość wyników wyświetlana na stronie
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Number of results on the site
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IsAndOperator" type="xs:boolean" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Wyszukiwanie AND / OR
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            Search AND / OR
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilEntityRegistrySortAttributes">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Atrybuty sortowania rejestru SENT
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        SENT registry sorting attributes
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SortAttributeName" type="op:OilEntityRegistrySortAttributeName" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="SortOrder" type="op:OilRegistrySortOrder" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="OilEntityRegistrySortAttributeName">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Lista atrybutów do sortowania w rejestrze SENT
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        List of attributes to sort in the SENT register
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HeadOfTaxOfficeCode"/>
+      <xs:enumeration value="TypeOfOilEntity"/>
+      <xs:enumeration value="OilEntityIdentityNumber"/>
+      <xs:enumeration value="OilEntityName"/>
+      <xs:enumeration value="CreatedDate"/>
+      <xs:enumeration value="Province"/>
+      <xs:enumeration value="Status"/>
+      <xs:enumeration value="RiskOfAmount"/>
+      <xs:enumeration value="RiskOfPower"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="OilRegistrySortOrder">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Porządek sortowania
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Sort order
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ASC"/>
+      <xs:enumeration value="DESC"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OilEntityRegistryData">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Dane z rejestru umów
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        Data from the agreement register
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DataRow" minOccurs="0" maxOccurs="100">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="SearchEntityId" type="xs:int" />
+            <xs:element name="EntityId" type="xs:int" />
+            <xs:element name="HeadOfTaxOfficeCode" type="xs:string" />
+            <xs:element name="HeadOfTaxOfficeName" type="xs:string" />
+            <xs:element name="OilBroker" type="xs:boolean"/>
+            <xs:element name="OilConsumer" type="xs:boolean"/>
+            <xs:element name="TypeOfOilEntity" type="xs:string" />
+            <xs:element name="OilEntityName" type="xs:string" />
+            <xs:element name="OilEntityIdentityType" type="xs:string" />
+            <xs:element name="OilEntityIdentityNumber" type="xs:string" />
+            <xs:element name="Country" type="xs:string" />
+            <xs:element name="City" type="xs:string" />
+            <xs:element name="Street" type="xs:string" />
+            <xs:element name="PostalCode" type="xs:string" />
+            <xs:element name="HouseNumber" type="xs:string" />
+            <xs:element name="FlatNumber" type="xs:string" />
+            <xs:element name="Province" type="xs:string" />
+            <xs:element name="County" type="xs:string" />
+            <xs:element name="Commune" type="xs:string" />
+            <xs:element name="PhoneNumber" type="op:PhoneNumber" />
+            <xs:element name="Fax" type="op:Fax" />
+            <xs:element name="Email" type="tp:Email" />
+            <xs:element name="BranchOfficeCountry" type="xs:string" />
+            <xs:element name="BranchOfficeCity" type="xs:string" />
+            <xs:element name="BranchOfficeStreet" type="xs:string" />
+            <xs:element name="BranchOfficePostalCode" type="xs:string" />
+            <xs:element name="BranchOfficeHouseNumber" type="xs:string" />
+            <xs:element name="BranchOfficeFlatNumber" type="xs:string" />
+            <xs:element name="BranchOfficeProvince" type="xs:string" />
+            <xs:element name="BranchOfficeCounty" type="xs:string" />
+            <xs:element name="BranchOfficeCommune" type="xs:string" />
+            <xs:element name="CorrespondenceAddressCountry" type="xs:string" />
+            <xs:element name="CorrespondenceAddressCity" type="xs:string" />
+            <xs:element name="CorrespondenceAddressStreet" type="xs:string" />
+            <xs:element name="CorrespondenceAddressPostalCode" type="xs:string" />
+            <xs:element name="CorrespondenceAddressHouseNumber" type="xs:string" />
+            <xs:element name="CorrespondenceAddressFlatNumber" type="xs:string" />
+            <xs:element name="CorrespondenceAddressProvince" type="xs:string" />
+            <xs:element name="CorrespondenceAddressCounty" type="xs:string" />
+            <xs:element name="CorrespondenceAddressCommune" type="xs:string" />
+            <xs:element name="CreationDate" type="tp:DateTime" />
+            <xs:element name="Creator" type="tp:UserName" />
+            <xs:element name="ModificationDate" type="tp:DateTime" />
+            <xs:element name="Modifier" type="tp:UserName" />
+            <xs:element name="Status" type="xs:string" />
+            <xs:element name="DateOfCessation" type="tp:Date" />
+            <xs:element name="ReasonForCeasing" type="op:ReasonForCeasing" />
+            <xs:element name="DateOfDeath" type="xs:date" />
+            <xs:element name="RegistrationMethod" type="xs:string" />
+            <xs:element name="ApplicationSignMethod" type="xs:string" />
+            <xs:element name="ApplicationAcceptedDate" type="tp:DateTime" />
+            <xs:element name="AuthorizationDocumentType" type="xs:string" />
+            <xs:element name="AuthorizationDocumentNumber" type="xs:string" />
+            <xs:element name="AuthorizationFirstName" type="xs:string" />
+            <xs:element name="AuthorizationLastName" type="xs:string" />
+            <xs:element name="AuthorizationDate" type="tp:DateTime" />
+            <xs:element name="OfficeCreationDate" type="tp:Date" />
+            <xs:element name="OfficeInputDate" type="tp:Date" />
+            <xs:element name="DeclaredBalanceKG" type="xs:decimal" />
+            <xs:element name="DeclaredBalanceL" type="xs:decimal" />
+            <xs:element name="DeclaredPower" type="xs:decimal" />
+            <xs:element name="NumberOfStationaryAddresses" type="xs:integer" />
+            <xs:element name="NumbersOfStationaryDevices" type="xs:integer" />
+            <xs:element name="NumbersOfMobileDevices" type="xs:integer" />
+            <xs:element name="CurrentBalanceKG" type="xs:decimal" />
+            <xs:element name="CurrentBalanceL" type="xs:decimal" />
+            <xs:element name="RiskOfAmount" type="xs:decimal" />
+            <xs:element name="RiskOfPower" type="xs:decimal" />
+            <xs:element name="BalanceYear" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OilEntityHistory">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Historia podmiotu w rejestrze podmiotów olejowych
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OilEntityId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="OilEntityHistoryId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="OilEntityStatus" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="CreationDate" type="tp:DateTime" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Creator" type="tp:UserName" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="ModificationDate" type="tp:DateTime" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Modifier" type="tp:UserName" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TaxRegistrationInfo">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informcja rejestracyjna urzędowa wypełniana wyłącznie przez US
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        ..............................................................
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FirstName" type="tp:FirstName" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="LastName" type="tp:LastName" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="UserName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="CreationDate" type="tp:Date" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="InputDate" type="tp:Date" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TaxPortalTypeOfAuth">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informacja z Portalu Podatkowego sposobie uwierzytelneinia uzytkownika
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        ......................................................................
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PZ">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Autoryzacja Profilem Zaufanym
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            .............................
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TAX_AMOUNT">
+        <xs:annotation>
+          <xs:documentation source="doc" xml:lang="pl">
+            Autoryzacja kwotą przychodu
+          </xs:documentation>
+          <xs:documentation source="doc" xml:lang="en">
+            ...........................
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:whiteSpace value="collapse">
+      </xs:whiteSpace>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OilTransaction">
+    <xs:annotation>
+      <xs:documentation source="doc" xml:lang="pl">
+        Informację dotyczące transakcji olejowych
+      </xs:documentation>
+      <xs:documentation source="doc" xml:lang="en">
+        .........................................
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MobileDeviceRegNumber" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="HeatingAddressRegNumber" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="SentNumber" type="tp:SentNumber" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="TransactionCodeValue" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="ConsumptionDate" type="tp:DateTime" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="AmountOfGoods" type="tp:Amount" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Latitude" type="tp:Latitude" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Longitude" type="tp:Longitude" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,30 @@
+TypeOfTransport: =1
+GoodsRecipient/TraderInfo/TraderName: =EXAMPLE RECIPIENT SP. Z O.O.
+GoodsRecipient/TraderInfo/TraderIdentityType: =NIP
+GoodsRecipient/TraderInfo/TraderIdentityNumber: =0000000000
+GoodsRecipient/TraderAddress/Street: =Example Street
+GoodsRecipient/TraderAddress/HouseNumber: =1
+GoodsRecipient/TraderAddress/City: =Example City
+GoodsRecipient/TraderAddress/Country: =PL
+GoodsRecipient/TraderAddress/PostalCode: =00-000
+Transport/PlaceOfDelivery/Street: =Example Street
+Transport/PlaceOfDelivery/HouseNumber: =1
+Transport/PlaceOfDelivery/City: =Example City
+Transport/PlaceOfDelivery/Country: =PL
+Transport/PlaceOfDelivery/PostalCode: =00-000
+Transport/PlaceOfDelivery/CodeTERC: =00
+Transport/PlaceOfDelivery/Latitude: =52.000000
+Transport/PlaceOfDelivery/Longitude: =21.000000
+GoodsInformation/ElementNumber: =1
+GoodsInformation/CodeCnClassification: =0005
+GoodsInformation/GoodsName: =EXAMPLE GOODS
+GoodsInformation/AmountOfGoods: POTWIERDZONA MASA
+GoodsInformation/UnitOfMeasure: =kg
+GoodsInformation/VATRate: =23
+GoodsInformation/WasteCode: =191207
+DocumentId: AUTO
+ResponseAddress/EmailChannel/EmailAddress1: =notifications@example.com
+ResponseAddress/EmailChannel/EmailAddress2: TRÄGER
+Statements/Statement1: =true
+Statements/FirstName: =JANE
+Statements/LastName: =DOE

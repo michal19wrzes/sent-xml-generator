@@ -1,0 +1,22 @@
+clients:
+- name: DEMO_CLIENT
+  excel_file: AWIZACJA DEMO.xlsx
+  sent_folder: SENTY DEMO_CLIENT
+  default_sent_type: SENT_205
+  mappings:
+    SENT_200: mapping_DEMO_200.yaml
+    SENT_205: mapping_DEMO_205.yaml
+  registration_column: AUTO
+  sender_source: excel_top_cells
+  sender_name_cell: A1
+  sender_identity_cell: A2
+  sender_address_cell: A3
+  document_id_base: DE 0000 000000
+  document_id_registration_column: AUTO
+  outlook_document_ids:
+  - DE 0000 000000
+  sent_type_rule:
+    column_index: 7
+    contains: EXPRO
+    true_type: SENT_200
+    false_type: SENT_205
