@@ -95,7 +95,6 @@ The demo includes:
 
 ## Screenshots
 
-_Add screenshots here_
 
 ![Application](docs/demo-screenshot.png)
 
